@@ -1,0 +1,6 @@
+{
+  "watch": ["main.js", "handler.js", "config.js", "lib/"],
+  "ext": "js",
+  "ignore": ["plugins/", "database/", "session/", "tmp/"],
+  "delay": "500"
+}
