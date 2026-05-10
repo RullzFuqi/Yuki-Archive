@@ -2,7 +2,6 @@ import "./config.js";
 import {
   makeWASocket,
   useMultiFileAuthState,
-  fetchLatestBaileysVersion,
   Browsers,
   makeCacheableSignalKeyStore,
   DisconnectReason,
@@ -79,8 +78,7 @@ let selectedPairing = null;
 async function start() {
   await global.pluginLoader.loadAll();
   global.pluginLoader.watch(".");
-
-  const { version } = await fetchLatestBaileysVersion();
+  
   const { state, saveCreds } = await useMultiFileAuthState("./session");
   const isReg = state.creds.registered;
 
@@ -94,7 +92,7 @@ async function start() {
   }
 
   const sock = makeWASocket({
-    version,
+    version: [2, 3000, 1034074495],
     auth: {
       creds: state.creds,
       keys: makeCacheableSignalKeyStore(state.keys, pino({ level: "silent" })),
